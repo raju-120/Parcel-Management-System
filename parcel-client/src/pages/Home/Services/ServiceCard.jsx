@@ -2,19 +2,43 @@ const ServiceCard = ({ service }) => {
   const Icon = service.icon;
 
   return (
-    <div className="card bg-base-100 shadow-md hover:shadow-xl transition-all duration-300">
+    <div className="
+      card shadow-md 
+      bg-base-100
+      border border-transparent
+      transition-all duration-300 ease-in-out
+      hover:shadow-xl hover:-translate-y-1
+      hover:border-brand
+      hover:bg-brand
+      group
+    ">
       <div className="card-body items-center text-center">
-        <div className="text-primary text-4xl mb-4">
+
+        {/* Icon */}
+        <div className="
+          text-4xl mb-4
+          text-base-content
+          transition-colors duration-300
+          group-hover:text-brand
+        ">
           <Icon />
         </div>
 
-        <h3 className="card-title text-lg font-semibold text-base-content">
+        {/* Title */}
+        <h3 className="
+          card-title text-lg font-semibold
+          text-base-content
+          transition-colors duration-300
+          group-hover:text-brand
+        ">
           {service.title}
         </h3>
 
+        {/* Description */}
         <p className="text-sm text-base-content/70">
           {service.description}
         </p>
+
       </div>
     </div>
   );

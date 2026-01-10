@@ -4,7 +4,7 @@ import HowItWorksHeader from "./HowItWorksHeader";
 
 const Works= () => {
   return (
-    <section className="py-16 bg-base-200">
+    <section className="py-16 bg-base-200 mt-3 rounded-2xl">
       <div className="container mx-auto px-4">
         <HowItWorksHeader
           title="How It Works"
