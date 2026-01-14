@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router';
+import { Link, NavLink } from 'react-router';
 import ProFastLogo from '../ProFastLogo/ProFastLogo';
 import { useTheme } from '../../../Context/ThemeContext';
 
@@ -8,6 +8,7 @@ const Navbar = () => {
   
   const navItems = <>
     <li><NavLink to='/'>Home</NavLink></li>
+    <li><NavLink to='/sendParcel'>Send A Parcel</NavLink></li>
     <li><NavLink to='/coverage'>Coverage</NavLink></li>
     <li><NavLink to='/about'>About-Us</NavLink></li>
     
@@ -34,7 +35,7 @@ const Navbar = () => {
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
+          <ul className="menu menu-horizontal px-1 text-xl font-semibold">
             {navItems}
           </ul>
         </div>
@@ -68,7 +69,7 @@ const Navbar = () => {
             </svg>
           </label>
           
-          <a className="btn">Button</a>
+          <Link to="/login" className='btn btn-dash btn-success'>Login</Link>
         </div>
       </div>
     </div>
