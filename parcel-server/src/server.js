@@ -1,13 +1,20 @@
+const fs = require("fs");
+const http = require("http");
 const path = require("path");
-require("dotenv").config({
-  path: path.join(__dirname, "../.env.local")
-});
+const dotenv = require("dotenv");
+const app = require("./app");
 
-const app = require('./app');
+const envPath = path.resolve(__dirname, "../.env.local");
 
-// console.log("PORT NO: ", process.env.PORT)
-const PORT = process.env.PORT ||5001;
+// console.log("ENV FILE EXISTS:", fs.existsSync(envPath));
 
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
+dotenv.config({ path: envPath });
+
+
+const PORT = process.env.PORT || 8000;
+
+const server = http.createServer(app);
+
+server.listen(PORT, () => {
+  console.log(`🚀 Server listening on port ${PORT}`);
 });
