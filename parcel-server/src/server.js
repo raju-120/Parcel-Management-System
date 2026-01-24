@@ -1,20 +1,26 @@
-const fs = require("fs");
 const http = require("http");
-const path = require("path");
 const dotenv = require("dotenv");
+const mongoose = require("mongoose");
 const app = require("./app");
 
-const envPath = path.resolve(__dirname, "../.env.local");
-
-// console.log("ENV FILE EXISTS:", fs.existsSync(envPath));
-
-dotenv.config({ path: envPath });
-
+dotenv.config({ path: ".env.local" });
 
 const PORT = process.env.PORT || 8000;
+const MONGO_URL = process.env.MONGO_URL;
 
 const server = http.createServer(app);
 
-server.listen(PORT, () => {
-  console.log(`🚀 Server listening on port ${PORT}`);
-});
+async function startServer() {
+  try {
+    await mongoose.connect(MONGO_URL);
+    console.log("✅ MongoDB connected");
+
+    server.listen(PORT, () => {
+      console.log(`🚀 Server listening on port ${PORT}`);
+    });
+  } catch (err) {
+    console.error("❌ MongoDB connection failed:", err.message);
+  }
+}
+
+startServer();
