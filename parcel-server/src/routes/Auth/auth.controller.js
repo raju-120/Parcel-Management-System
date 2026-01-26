@@ -88,6 +88,23 @@ const signIn = asyncHandler(async (req, res) => {
   );
 });
 
+const googleAuthCallback= asyncHandler(async(req,res)=>{
+  const user = req.user;
+  if(!user){
+    throw new APIError(401, "Google authentication failed");
+  }
+
+  const accessToken = user.generateAccessToken();
+  const refreshToken = user.generateRefreshToken();
+
+  user.refreshToken = refreshToken;
+  await user.save({ validateBeforeSave: false });
+
+  const frontendURL = `${process.env.FRONTEND_URL}/auth/callback?accessToken=${accessToken}&refreshToken=${refreshToken}`;
+  
+  return res.redirect(frontendURL);
+})
+
 // --- Get all users ---
 const getAllUser = asyncHandler(async (req, res) => {
   const users = await User.find().select("-password -refreshToken"); // don't send sensitive data
@@ -131,6 +148,7 @@ const signOut = asyncHandler(async(req,res)=>{
 module.exports = {
   userSignUp,
   signIn,
+  googleAuthCallback,
   getAllUser,
   signOut
 };

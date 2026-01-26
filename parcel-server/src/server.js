@@ -1,12 +1,16 @@
-const http = require("http");
 const dotenv = require("dotenv");
+dotenv.config({ path: ".env.local" });
+
+const http = require("http");
 const mongoose = require("mongoose");
 const app = require("./app");
 
-dotenv.config({ path: ".env.local" });
+
+
 
 const PORT = process.env.PORT || 8000;
 const MONGO_URL = process.env.MONGO_URL;
+
 
 const server = http.createServer(app);
 

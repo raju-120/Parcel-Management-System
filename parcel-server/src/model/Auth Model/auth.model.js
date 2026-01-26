@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 
 const userSchema = new mongoose.Schema(
   {
+  
     username: {
       type: String,
       required: true,
@@ -22,7 +23,15 @@ const userSchema = new mongoose.Schema(
       default:
         "https://media.istockphoto.com/id/1130884625/vector/user-member-vector-icon-for-ui-user-interface-or-profile-face-avatar-app-in-circle-design.jpg",
     },
-    refreshToken: { type: String, default: null } // <- added
+
+    googleId: {  // ← Add this field
+      type: String,
+      default: null,
+    },
+    refreshToken: { 
+      type: String, 
+      default: null 
+    } // <- added
   },
   { timestamps: true }
 );

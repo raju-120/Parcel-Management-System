@@ -2,6 +2,7 @@ const express = require('express');
 const sendParcelsRouter = require('./routes/SendParcelRoute/sendParcel.router.js');
 const authRouter = require('./routes/Auth/auth.routes.js');
 // const path = require('path')
+// const passport = require("./Util/passport.config.js")
 
 const app = express();
 
@@ -15,6 +16,9 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
   res.send(`Server is running on..`);
 });
+
+// Initialize Passport
+// app.use(passport.initialize());
 
 // Auth Router
 app.use('/api/v1',authRouter);
